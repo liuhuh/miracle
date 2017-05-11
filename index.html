@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<link rel="shortcut icon"  href="favicon.ico"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<script src="js/commons.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		 
+		
+		
+	</head>
+	<body>
+		<div class="box">
+			
+			<!--返回顶部-->
+			<a href="javascript:;" class="backtop"></a>
+			<!--返回顶部结束-->
+			
+		
+		<!--头部内容区-->
+		<header>
+			<!--搜索栏开始-->
+			<div class="search">
+				<a href="index.html" class="logo">
+					<img src="images/logo.png"/>
+				</a>
+				<form action="">
+					<input type="search" name="" id="" value="" placeholder="搜索目的地/攻略/游记"/>
+					<a href="javascript:">
+						<img src="images/btn_search2.png"/>
+					</a>
+				</form>
+				<a href="login.html" class="login">登录</a>
+			</div>
+			<!--搜索栏结束-->
+			
+			<!--轮播开始-->
+			<div class="banner">
+				
+				<ul class="clearfix">
+					<li>
+						<a href="javascript:">
+							<img src="images/banner_3.jpeg"/>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:">
+							<img src="images/banner_1.jpeg"/>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:">
+							<img src="images/banner_2.jpeg"/>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:">
+							<img src="images/banner_3.jpeg"/>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:">
+							<img src="images/banner_1.jpeg"/>
+						</a>
+					</li>
+				</ul>
+				
+				<div class="bar">
+					<span class="barCur"></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<!--轮播结束-->
+		</header>
+		<!--头部内容区结束-->
+		<!--导航栏开始-->
+		<nav>
+			<ul class="clearfix">
+				<li>
+					<a href="strategy.html">
+						<i></i>
+						<p class="color1">找攻略</p>
+					</a>
+				</li>
+				<li>
+					<a href="travel.html">
+						<i class="iconone"></i>
+						<p class="color2">看游记</p>
+					</a>
+				</li>
+				<li>
+					<a href="questions.html">
+						<i class="icontwo"></i>
+						<p class="color3">问达人</p>
+					</a>
+				</li>
+				<li>
+					<a href="partnership.html">
+						<i class="iconthree"></i>
+						<p class="color4">结伴</p>
+					</a>
+				</li>
+				<li>
+					<a href="hotal.html">
+						<i class="iconfour"></i>
+						<p class="color5">酒店</p>
+					</a>
+				</li>
+				<li>
+					<a href="shopping.html">
+						<i class="iconfive"></i>
+						<p class="color6">旅行商城</p>
+					</a>
+				</li>
+				<li>
+					<a href="ticket.html">
+						<i class="iconsix"></i>
+						<p class="color7">机票</p>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:">
+						<i class="iconser"></i>
+						<p class="color8">当地玩乐</p>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!--导航栏结束-->
+		
+		<div class="hd">
+			>推荐攻略<
+		</div>
+		<!--内容区开始-->
+		<div class="content">
+			
+			<ul class="clearfix" id="ul_con">
+
+			</ul>
+			
+
+			
+		</div>
+		<!--内容区结束-->
+		
+		<!--底部栏开始-->
+		<footer>
+			<p>© 2017 Mafengwo.cn 京ICP备11015476号 </p>
+			<p>营业执照 新出网证(京)字242号</p>
+		</footer>
+	</div>
+		<!--底部栏结束-->
+	</body>
+	<!--<script src="js/template.js"></script>-->
+	<script src="js/template-native.js"></script>
+
+	<script type="text/javascript">
+		var ul=document.querySelector('#ul_con');
+		var xhr=new XMLHttpRequest()
+		xhr.open('GET','js/index.json');
+		xhr.send(null);
+		xhr.onreadystatechange=function()
+		{
+			if(xhr.status==200&&xhr.readyState==4)
+			{
+				var data=xhr.responseText;
+				data=JSON.parse(data)
+				ulstr="";
+				for(var i=0;i<data.length;i++)
+				{
+					ulstr+='<li>'
+					ulstr+=	'<div class="title">'				
+		            ulstr+=           data[i].title
+		            ulstr+=           '<img src="'+data[i].img+'"/>'
+					ulstr+=		'</div>'
+					ulstr+=		'<div class="content_box">'
+					ulstr+=			'<img src="'+data[i].images+'" alt="" />'
+					ulstr+=			'<div class="summary">'
+					ulstr+=				'<p class="content_article">'+data[i].p+'</p>'			
+					ulstr+=				'<div class="content_article_b">'
+					ulstr+=					'<span class="num">'+data[i].num+'</span>'
+					ulstr+=					'<span class="name">'+data[i].name+'</span>'
+					ulstr+=				'</div>'		
+					ulstr+=			'</div>'
+					ulstr+=		'</div>'
+					ulstr+=	'</li>'
+				}
+				ul.innerHTML=ulstr;
+				
+			}
+		}
+	</script>
+</html>
